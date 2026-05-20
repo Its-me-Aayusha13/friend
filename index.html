@@ -189,72 +189,74 @@
     @media(max-width:768px){
 
   body{
-    overflow:hidden;
+    overflow:auto;
   }
 
   .container{
     width:100%;
-    height:100vh;
+    min-height:100vh;
     display:flex;
-    flex-direction:row;
+    flex-direction:column;
+    justify-content:center;
     align-items:center;
-    justify-content:space-between;
-    padding:15px;
-    gap:15px;
+    padding:30px 20px;
+    gap:40px;
+    text-align:center;
   }
 
   .left{
-    width:50%;
+    width:100%;
   }
 
   .left h1{
-    font-size:52px;
-    line-height:60px;
-    margin-bottom:15px;
+    font-size:72px;
+    line-height:85px;
+    margin-bottom:20px;
   }
 
   .left p{
-    font-size:18px;
-    line-height:34px;
+    font-size:26px;
+    line-height:52px;
   }
 
   .right{
-    width:50%;
+    width:100%;
     display:flex;
     justify-content:center;
     align-items:center;
     position:relative;
+    height:500px;
   }
 
   .slide{
-    width:220px;
-    height:340px;
-    border-radius:25px;
+    width:300px;
+    height:430px;
+    border-radius:35px;
     object-fit:cover;
     object-position:center;
-    box-shadow:0 0 25px rgba(255,255,255,0.25);
+    box-shadow:0 0 30px rgba(255,255,255,0.25);
   }
 
   #startScreen h1{
-    font-size:45px;
+    font-size:50px;
     padding:20px;
+    line-height:70px;
     text-align:center;
   }
 
   #openBtn{
-    font-size:22px;
-    padding:15px 35px;
+    font-size:24px;
+    padding:16px 38px;
   }
 
   #typingText{
-    font-size:30px;
+    font-size:34px;
+    line-height:50px;
     white-space:normal;
     border-right:none;
-    line-height:45px;
   }
 
 }
-
   </style>
 
 </head>
