@@ -150,63 +150,110 @@
 
     }
 
+    /* ENDING SCREEN */
+
+    #endingScreen{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100vh;
+      background:black;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      z-index:999;
+      opacity:0;
+      visibility:hidden;
+      transition:1s;
+    }
+
+    #typingText{
+      font-size:70px;
+      color:white;
+      text-shadow:0 0 20px pink;
+      padding:20px;
+      border-right:4px solid pink;
+      white-space:nowrap;
+      overflow:hidden;
+    }
+
+    .showEnding{
+      opacity:1 !important;
+      visibility:visible !important;
+    }
+
     /* MOBILE RESPONSIVE */
 
-@media(max-width: 768px){
+    @media(max-width:768px){
 
-  body{
-    overflow:auto;
-  }
+      body{
+        overflow:hidden;
+      }
 
-  .container{
-    flex-direction:column;
-    justify-content:center;
-    padding:20px;
-    gap:30px;
-    text-align:center;
-  }
+      .container{
+        width:100%;
+        height:100vh;
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        padding:20px;
+        gap:10px;
+      }
 
-  .left{
-    width:100%;
-  }
+      .left{
+        width:50%;
+      }
 
-  .left h1{
-    font-size:50px;
-  }
+      .left h1{
+        font-size:42px;
+        line-height:55px;
+      }
 
-  .left p{
-    font-size:22px;
-    line-height:35px;
-  }
+      .left p{
+        font-size:18px;
+        line-height:30px;
+      }
 
-  .right{
-    width:100%;
-    height:420px;
-  }
+      .right{
+        width:45%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        position:relative;
+      }
 
-  .slide{
-    width:280px;
-    height:360px;
-  }
+      .slide{
+        width:170px;
+        height:240px;
+        border-radius:20px;
+      }
 
-  #startScreen h1{
-    font-size:45px;
-    padding:20px;
-  }
+      #startScreen h1{
+        font-size:40px;
+        padding:20px;
+      }
 
-  #openBtn{
-    font-size:22px;
-    padding:15px 35px;
-  }
+      #openBtn{
+        font-size:20px;
+        padding:14px 30px;
+      }
 
-}
+      #typingText{
+        font-size:26px;
+        white-space:normal;
+        border-right:none;
+      }
+
+    }
 
   </style>
 
 </head>
 
 <body>
-
 
 <!-- START SCREEN -->
 
@@ -219,7 +266,6 @@
 </div>
 
 
-
 <!-- MAIN WEBSITE -->
 
 <div class="container" id="mainContent">
@@ -228,14 +274,13 @@
 
   <div class="left">
 
-    <h1>Happy Birthday ❤️</h1>
+    <h1>Happy Birthday ✨🎂</h1>
 
     <p id="message">
-      You deserve all the happiness 🌸
+       ✨🌸🎂❤️
     </p>
 
   </div>
-
 
 
   <!-- MUSIC -->
@@ -243,7 +288,6 @@
   <audio id="bgmusic" loop>
     <source src="./music.mp3" type="audio/mp3">
   </audio>
-
 
 
   <!-- RIGHT SIDE -->
@@ -263,6 +307,14 @@
 
 </div>
 
+
+<!-- ENDING SCREEN -->
+
+<div id="endingScreen">
+
+  <h1 id="typingText"></h1>
+
+</div>
 
 
 <script>
@@ -287,20 +339,19 @@ openBtn.addEventListener("click", () => {
 });
 
 
-
 /* SLIDESHOW */
 
 const slides = document.querySelectorAll(".slide");
 
 const messages = [
 
-  "You deserve all the happiness 🌸",
-
-  "Tumhe pata hai na, I’m always a little scared of you 😭 but thank you for always teaching me the best things ❤️",
-
   "Thank you for being such an awesome friend ✨",
 
-  "Keep smiling forever 😊",
+  "✨🌸Tumhe pata hai na, I’m always a little scared of you 😭 but thank you for always teaching me the best things ❤️🎂❤️",
+
+  "hamesaaaa khushhhh reyheynaaaaaa 🌸",
+
+  "jaldiiii seee placement lenaaa aur party denaaaaa 🤗😊",
 
   "Your presence is everything in a group 💖",
 
@@ -308,7 +359,10 @@ const messages = [
 
   "Happy Birthday Once Again 🎂",
 
-  "😊🌸💖"
+  "😊🌸💖",
+
+  
+  "🤗🎂😊"
 
 ];
 
@@ -354,6 +408,43 @@ function createHeart(){
 }
 
 setInterval(createHeart, 300);
+
+
+
+/* ENDING SCREEN */
+
+const endingScreen = document.getElementById("endingScreen");
+
+const typingText = document.getElementById("typingText");
+
+const finalMessage = "Once Again Happy Birthday Subhuuuuuuu ❤️";
+
+
+setTimeout(() => {
+
+  document.querySelector(".container").style.display = "none";
+
+  endingScreen.classList.add("showEnding");
+
+  let i = 0;
+
+  function typeWriter(){
+
+    if(i < finalMessage.length){
+
+      typingText.innerHTML += finalMessage.charAt(i);
+
+      i++;
+
+      setTimeout(typeWriter, 100);
+
+    }
+
+  }
+
+  typeWriter();
+
+}, 35000);
 
 </script>
 
