@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Subhuuuuuuu</title>
+  <title>Happy Birthday Subhuuuuu</title>
 
   <style>
 
@@ -21,6 +21,49 @@
       color:white;
     }
 
+    /* START SCREEN */
+
+    #startScreen{
+      width:100%;
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      position:fixed;
+      top:0;
+      left:0;
+      background:black;
+      z-index:9999;
+    }
+
+    #startScreen h1{
+      font-size:80px;
+      color:white;
+      text-shadow:0 0 20px pink;
+      margin-bottom:40px;
+      text-align:center;
+    }
+
+    #openBtn{
+      padding:18px 50px;
+      font-size:28px;
+      border:none;
+      border-radius:50px;
+      background:pink;
+      color:black;
+      cursor:pointer;
+      transition:0.3s;
+      font-weight:bold;
+    }
+
+    #openBtn:hover{
+      transform:scale(1.1);
+      box-shadow:0 0 20px pink;
+    }
+
+    /* MAIN CONTAINER */
+
     .container{
       width:100%;
       height:100vh;
@@ -29,6 +72,14 @@
       justify-content:space-between;
       padding:60px;
       position:relative;
+      opacity:0;
+      visibility:hidden;
+      transition:1s;
+    }
+
+    .show{
+      opacity:1;
+      visibility:visible;
     }
 
     /* LEFT SIDE */
@@ -36,7 +87,6 @@
     .left{
       width:45%;
       z-index:2;
-      animation:fadeLeft 2s ease;
     }
 
     .left h1{
@@ -100,19 +150,56 @@
 
     }
 
-    @keyframes fadeLeft{
+    /* MOBILE RESPONSIVE */
 
-      from{
-        opacity:0;
-        transform:translateX(-50px);
-      }
+@media(max-width: 768px){
 
-      to{
-        opacity:1;
-        transform:translateX(0);
-      }
+  body{
+    overflow:auto;
+  }
 
-    }
+  .container{
+    flex-direction:column;
+    justify-content:center;
+    padding:20px;
+    gap:30px;
+    text-align:center;
+  }
+
+  .left{
+    width:100%;
+  }
+
+  .left h1{
+    font-size:50px;
+  }
+
+  .left p{
+    font-size:22px;
+    line-height:35px;
+  }
+
+  .right{
+    width:100%;
+    height:420px;
+  }
+
+  .slide{
+    width:280px;
+    height:360px;
+  }
+
+  #startScreen h1{
+    font-size:45px;
+    padding:20px;
+  }
+
+  #openBtn{
+    font-size:22px;
+    padding:15px 35px;
+  }
+
+}
 
   </style>
 
@@ -120,7 +207,22 @@
 
 <body>
 
-<div class="container">
+
+<!-- START SCREEN -->
+
+<div id="startScreen">
+
+  <h1>Happy Birthday Subhuuuuu ❤️</h1>
+
+  <button id="openBtn">Open ✨</button>
+
+</div>
+
+
+
+<!-- MAIN WEBSITE -->
+
+<div class="container" id="mainContent">
 
   <!-- LEFT SIDE -->
 
@@ -129,137 +231,129 @@
     <h1>Happy Birthday ❤️</h1>
 
     <p id="message">
-      Happy Birthday Subhuuuuuu ✨
+      You deserve all the happiness 🌸
     </p>
 
   </div>
 
 
+
   <!-- MUSIC -->
 
-  <audio id="bgmusic" loop hidden>
-  <source src="./music.mp3" type="audio/mp3">
-</audio>
+  <audio id="bgmusic" loop>
+    <source src="./music.mp3" type="audio/mp3">
+  </audio>
 
-<script>
-
-const music = document.getElementById("bgmusic");
-
-document.body.addEventListener("click", () => {
-
-  music.play();
-
-}, { once: true });
-
-</script>
 
 
   <!-- RIGHT SIDE -->
 
   <div class="right">
 
-    <img src="images/1st_image.jpg" class="slide active">
-    <img src="images/2nd_image.jpg" class="slide">
-    <img src="images/3rd_image.jpg" class="slide">
-    <img src="images/4th_image.jpg" class="slide">
-    <img src="images/5th_image.jpg" class="slide">
-    <img src="images/6th_image.jpg" class="slide">
-    <img src="images/7th_image.jpg" class="slide">
-    <img src="images/8th_image.jpg" class="slide">
+    <img src="Images/1st_image.jpg" class="slide active">
+    <img src="Images/2nd_image.jpg" class="slide">
+    <img src="Images/3rd_image.jpg" class="slide">
+    <img src="Images/4th_image.jpg" class="slide">
+    <img src="Images/5th_image.jpg" class="slide">
+    <img src="Images/6th_image.jpg" class="slide">
+    <img src="Images/7th_image.jpg" class="slide">
+    <img src="Images/8th_image.jpg" class="slide">
 
   </div>
 
 </div>
 
 
+
 <script>
 
-  // MUSIC
+const openBtn = document.getElementById("openBtn");
 
-  window.onload = () => {
+const startScreen = document.getElementById("startScreen");
 
-    const music = document.getElementById("bgmusic");
+const mainContent = document.getElementById("mainContent");
 
-    music.volume = 1;
-
-    music.play().catch(() => {
-
-      document.body.addEventListener("click", () => {
-        music.play();
-      }, { once: true });
-
-    });
-
-  };
+const music = document.getElementById("bgmusic");
 
 
+openBtn.addEventListener("click", () => {
 
-  // SLIDESHOW
+  music.play();
 
-  const slides = document.querySelectorAll(".slide");
+  startScreen.style.display = "none";
 
-  const messages = [
+  mainContent.classList.add("show");
 
-    "You deserve all the happiness 🌸",
-
-    "Tumhe pata hai na, I’m always a little scared of you 😭 but thank you for always teaching me the best things ❤️",
-
-    "Thank you for being such an awesome friend ✨",
-
-    "Keep smiling forever 😊",
-
-    "Your presence is everything in a group 💖",
-
-    "Stay happy and keep shining 🌙",
-
-    "Happy Birthday Once Again 🎂",
-
-    "😊🌸💖"
-
-  ];
-
-  let current = 0;
-
-  const message = document.getElementById("message");
-
-
-  setInterval(() => {
-
-    slides[current].classList.remove("active");
-
-    current = (current + 1) % slides.length;
-
-    slides[current].classList.add("active");
-
-    message.innerText = messages[current % messages.length];
-
-  }, 4000);
+});
 
 
 
-  // FLOATING HEARTS
+/* SLIDESHOW */
 
-  function createHeart(){
+const slides = document.querySelectorAll(".slide");
 
-    const heart = document.createElement("div");
+const messages = [
 
-    heart.classList.add("heart");
+  "You deserve all the happiness 🌸",
 
-    heart.innerHTML = "❤";
+  "Tumhe pata hai na, I’m always a little scared of you 😭 but thank you for always teaching me the best things ❤️",
 
-    heart.style.left = Math.random() * 100 + "vw";
+  "Thank you for being such an awesome friend ✨",
 
-    heart.style.fontSize = Math.random() * 20 + 10 + "px";
+  "Keep smiling forever 😊",
 
-    document.body.appendChild(heart);
+  "Your presence is everything in a group 💖",
 
-    setTimeout(() => {
-      heart.remove();
-    }, 6000);
+  "Stay happy and keep shining 🌙",
 
-  }
+  "Happy Birthday Once Again 🎂",
 
-  setInterval(createHeart, 300);
+  "😊🌸💖"
+
+];
+
+let current = 0;
+
+const message = document.getElementById("message");
+
+
+setInterval(() => {
+
+  slides[current].classList.remove("active");
+
+  current = (current + 1) % slides.length;
+
+  slides[current].classList.add("active");
+
+  message.innerText = messages[current];
+
+}, 4000);
+
+
+
+/* FLOATING HEARTS */
+
+function createHeart(){
+
+  const heart = document.createElement("div");
+
+  heart.classList.add("heart");
+
+  heart.innerHTML = "❤";
+
+  heart.style.left = Math.random() * 100 + "vw";
+
+  heart.style.fontSize = Math.random() * 20 + 10 + "px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+
+}
+
+setInterval(createHeart, 300);
 
 </script>
 
