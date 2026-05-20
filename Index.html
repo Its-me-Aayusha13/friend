@@ -137,9 +137,21 @@
 
   <!-- MUSIC -->
 
-  <audio id="bgmusic" autoplay loop hidden>
-    <source src="./music.mp3" type="audio/mp3">
-  </audio>
+  <audio id="bgmusic" loop hidden>
+  <source src="./music.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+const music = document.getElementById("bgmusic");
+
+document.body.addEventListener("click", () => {
+
+  music.play();
+
+}, { once: true });
+
+</script>
 
 
   <!-- RIGHT SIDE -->
